@@ -15,7 +15,7 @@ jobs:
             - name: Setup PHP
               uses: shivammathur/setup-php@v2
               with:
-                  php-version: 8.1
+                  php-version: 8.2
                   tools: composer:v2
             - name: Installing composer dependencies
               run: composer install
@@ -31,7 +31,7 @@ jobs:
             - name: Setup PHP
               uses: shivammathur/setup-php@v2
               with:
-                  php-version: 8.1
+                  php-version: 8.2
                   tools: composer:v2, phpunit
             - name: Installing composer dependencies
               run: composer install
