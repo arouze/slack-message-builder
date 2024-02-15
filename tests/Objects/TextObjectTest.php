@@ -15,7 +15,7 @@ class TextObjectTest extends AbstractSlackMessageBuilderBaseTestCase
     {
         self::assertEquals(
             [
-                'type' => 'text',
+                'type' => 'plain_text',
                 'text' => "Simple text."
             ],
             (new TextObject())
