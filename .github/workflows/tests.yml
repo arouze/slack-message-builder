@@ -36,4 +36,4 @@ jobs:
             - name: Installing composer dependencies
               run: composer install
             - name: Run unit tests
-              run: ./vendor/bin/simple-phpunit --stop-on-failure ./tests --testdox --verbose
+              run: ./vendor/bin/phpunit --stop-on-failure ./tests --testdox
