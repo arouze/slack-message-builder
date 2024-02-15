@@ -1,0 +1,39 @@
+name: Tests
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    standards-tests:
+        name: PHP Coding Standards tests
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout Repository
+              uses: actions/checkout@v4
+            - name: Setup PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: 8.1
+                  tools: composer:v2
+            - name: Installing composer dependencies
+              run: composer install
+            - name: Run PHPCS tests
+              run: ./vendor/bin/phpcs -vw ./src
+
+    unit-tests:
+        name: PHPUnit unit tests
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout Repository
+              uses: actions/checkout@v4
+            - name: Setup PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: 8.1
+                  tools: composer:v2, phpunit
+            - name: Installing composer dependencies
+              run: composer install
+            - name: Run unit tests
+              run: ./vendor/bin/simple-phpunit --stop-on-failure ./tests --testdox --verbose
