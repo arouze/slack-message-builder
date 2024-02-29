@@ -3,6 +3,7 @@
 namespace Arouze\Tests;
 
 use Arouze\SlackMessageBuilder\Elements\ButtonElement;
+use Arouze\SlackMessageBuilder\Elements\DateTimePickerElement;
 use Arouze\SlackMessageBuilder\Objects\ButtonTextObject;
 use Arouze\SlackMessageBuilder\Objects\ImageObject;
 use Arouze\SlackMessageBuilder\Objects\TextObject;
@@ -41,5 +42,10 @@ abstract class AbstractSlackMessageBuilderBaseTestCase extends TestCase
     {
         return (new ButtonElement())
             ->setButtonTextObject(self::buildButtonTextObject());
+    }
+
+    protected static function buildDateTimePickerElement(): DateTimePickerElement
+    {
+        return (new DateTimePickerElement());
     }
 }

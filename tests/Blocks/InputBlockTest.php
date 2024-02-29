@@ -3,6 +3,7 @@
 namespace Arouze\Tests\Blocks;
 
 use Arouze\SlackMessageBuilder\Blocks\InputBlock;
+use Arouze\SlackMessageBuilder\Exceptions\IncompatibleElementException;
 use Arouze\SlackMessageBuilder\Exceptions\TooLongTextException;
 use Arouze\Tests\AbstractSlackMessageBuilderBaseTestCase;
 use PHPUnit\Framework\Attributes\Group;
@@ -14,7 +15,7 @@ class InputBlockTest extends AbstractSlackMessageBuilderBaseTestCase
     public function testInput(): void
     {
         $labelObject = self::buildTextObject();
-        $elementObject = self::buildButtonElement();
+        $elementObject = self::buildDateTimePickerElement();
 
         self::assertEquals(
             [
@@ -29,6 +30,23 @@ class InputBlockTest extends AbstractSlackMessageBuilderBaseTestCase
             ->setElement($elementObject)
             ->toArray()
         );
+    }
+
+    public function testIncompatibleElementException(): void
+    {
+        self::expectException(IncompatibleElementException::class);
+
+        (new InputBlock())
+            ->setElement(
+                self::buildButtonElement()
+            )
+            ->setLabel(
+                self::buildTextObject()
+                    ->setText(
+                        $this->fakerGenerator->realTextBetween(2001, 3000)
+                    )
+            )
+            ->toArray();
     }
 
     public function testTooLabelTextException(): void
@@ -54,7 +72,7 @@ class InputBlockTest extends AbstractSlackMessageBuilderBaseTestCase
                 self::buildTextObject()
             )
             ->setElement(
-                self::buildButtonElement()
+                self::buildDateTimePickerElement()
             )
             ->setHint(
                 self::buildTextObject()

@@ -4,7 +4,9 @@ namespace Arouze\SlackMessageBuilder\Blocks;
 
 use Arouze\SlackMessageBuilder\Common\BlockIdInterface;
 use Arouze\SlackMessageBuilder\Common\BlockIdTrait;
+use Arouze\SlackMessageBuilder\Elements\DateTimePickerElement;
 use Arouze\SlackMessageBuilder\Elements\ElementInterface;
+use Arouze\SlackMessageBuilder\Exceptions\IncompatibleElementException;
 use Arouze\SlackMessageBuilder\Exceptions\TooLongTextException;
 use Arouze\SlackMessageBuilder\Objects\TextObject;
 
@@ -18,6 +20,10 @@ class InputBlock implements BlockInterface, BlockIdInterface
     private const MAX_LABEL_LENGTH = 2000;
 
     private const MAX_HINT_LENGTH = 2000;
+
+    private const COMPATIBLE_ELEMENTS = [
+        DateTimePickerElement::class
+    ];
 
     private TextObject $label;
 
@@ -55,6 +61,14 @@ class InputBlock implements BlockInterface, BlockIdInterface
 
     public function setElement(ElementInterface $element): self
     {
+        if (!in_array(get_class($element), self::COMPATIBLE_ELEMENTS)) {
+            throw new IncompatibleElementException(
+                get_class($element),
+                self::class,
+                self::COMPATIBLE_ELEMENTS
+            );
+        }
+
         $this->element = $element;
 
         return $this;

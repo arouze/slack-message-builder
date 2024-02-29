@@ -47,20 +47,24 @@ This package will help you to build message easily and will warn you if you don'
 
 ## Available features
 
-### Accessories
-- Image
-
 ### Blocks
-- Section
-- Divider
 - Action
+- Context
+- Divider
+- File
+- Header
+- Input
+- Section
 
 ### Elements
 - Button
+- DateTimePicker
 
 ### Objects
-- TextObject
-- ButtonTextObject
+- ButtonText
+- Image
+- SlackFile
+- Text
 
 ## Unavailable features
 
