@@ -47,7 +47,7 @@ This package will help you to build message easily and will warn you if you don'
 
 ## Available features
 
-### Blocks
+### Blocks 8/10
 - Action
 - Context
 - Divider
@@ -55,16 +55,23 @@ This package will help you to build message easily and will warn you if you don'
 - Header
 - Input
 - Section
+- RichText
 
-### Elements
+### Elements 2/17
 - Button
 - DateTimePicker
 
-### Objects
+#### Rich Text Elements 1/4
+- RichTextSection
+
+### Objects 4/9
 - ButtonText
 - Image
 - SlackFile
 - Text
+
+#### Rich Text Object Type 1/6
+- Channel
 
 ## Unavailable features
 
