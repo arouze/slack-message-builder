@@ -8,6 +8,7 @@ use Arouze\SlackMessageBuilder\Common\BlockIdTrait;
 class FileBlock implements BlockInterface, BlockIdInterface
 {
     use BlockIdTrait;
+
     // @see : https://api.slack.com/reference/block-kit/blocks#file
     private const FILE_TYPE = 'file';
 

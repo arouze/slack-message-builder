@@ -4,7 +4,7 @@ namespace Arouze\Tests\Blocks;
 
 use Arouze\SlackMessageBuilder\Blocks\HeaderBlock;
 use Arouze\SlackMessageBuilder\Exceptions\TooLongBlockIdException;
-use Arouze\SlackMessageBuilder\Exceptions\TooLongHeaderTextException;
+use Arouze\SlackMessageBuilder\Exceptions\TooLongTextException;
 use Arouze\Tests\AbstractSlackMessageBuilderBaseTestCase;
 use PHPUnit\Framework\Attributes\Group;
 
@@ -31,7 +31,7 @@ class HeaderBlockTest extends AbstractSlackMessageBuilderBaseTestCase
 
     public function testTooLongHeaderTextException(): void
     {
-        self::expectException(TooLongHeaderTextException::class);
+        self::expectException(TooLongTextException::class);
 
         (new HeaderBlock())
             ->setTextObject(

@@ -14,6 +14,7 @@ use Arouze\SlackMessageBuilder\Objects\TextObject;
 class SectionBlock implements BlockInterface, BlockIdInterface
 {
     use BlockIdTrait;
+
     private const SECTION_TYPE = 'section';
     // @doc https://api.slack.com/reference/block-kit/blocks#section
 

@@ -11,6 +11,7 @@ use Arouze\SlackMessageBuilder\Objects\TextObject;
 class ContextBlock implements BlockInterface, BlockIdInterface
 {
     use BlockIdTrait;
+
     // @see : https://api.slack.com/reference/block-kit/blocks#context
     private const CONTEXT_TYPE = 'context';
 

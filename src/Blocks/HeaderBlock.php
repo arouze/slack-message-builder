@@ -4,12 +4,13 @@ namespace Arouze\SlackMessageBuilder\Blocks;
 
 use Arouze\SlackMessageBuilder\Common\BlockIdInterface;
 use Arouze\SlackMessageBuilder\Common\BlockIdTrait;
-use Arouze\SlackMessageBuilder\Exceptions\TooLongHeaderTextException;
+use Arouze\SlackMessageBuilder\Exceptions\TooLongTextException;
 use Arouze\SlackMessageBuilder\Objects\TextObject;
 
 class HeaderBlock implements BlockInterface, BlockIdInterface
 {
     use BlockIdTrait;
+
     private const HEADER_TYPE = 'header';
 
     public const MAX_TEXT_LENGTH = 150;
@@ -39,7 +40,7 @@ class HeaderBlock implements BlockInterface, BlockIdInterface
     public function setTextObject(TextObject $text): HeaderBlock
     {
         if (strlen($text->getText()) > self::MAX_TEXT_LENGTH) {
-            throw new TooLongHeaderTextException(strlen($text->getText()));
+            throw new TooLongTextException(strlen($text->getText()), self::MAX_TEXT_LENGTH);
         }
 
         $this->text = $text;
