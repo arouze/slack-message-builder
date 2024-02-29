@@ -29,6 +29,8 @@ class TextObjectTest extends AbstractSlackMessageBuilderBaseTestCase
     {
         self::expectException(TooLongButtonObjectTextException::class);
 
-        (new TextObject())->setText($this->moreThan3000CharText);
+        (new TextObject())->setText(
+            $this->fakerGenerator->realTextBetween(3001, 3300)
+        );
     }
 }

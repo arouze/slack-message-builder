@@ -23,7 +23,7 @@ class ActionBlockTest extends AbstractSlackMessageBuilderBaseTestCase
         );
     }
 
-    public function testTooMuchElementsException(): void
+    public function testActionBlockWithTooMuchElementsException(): void
     {
         self::expectException(TooMuchElementsException::class);
 
@@ -35,5 +35,4 @@ class ActionBlockTest extends AbstractSlackMessageBuilderBaseTestCase
 
         $actions->toArray();
     }
-
 }

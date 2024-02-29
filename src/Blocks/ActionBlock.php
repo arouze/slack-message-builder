@@ -10,12 +10,16 @@ class ActionBlock implements BlockInterface
     // @see : https://api.slack.com/reference/block-kit/blocks#actions
     private const ACTIONS_TYPE = 'actions';
 
-    private array $elements = [];
-
     public const MAX_ELEMENTS = 25;
+
+    private array $elements = [];
 
     public function addElement(ElementInterface $element): self
     {
+        if (count($this->elements) >= self::MAX_ELEMENTS) {
+            throw new TooMuchElementsException(count($this->elements));
+        }
+
         $this->elements[] = $element->toArray();
 
         return $this;
@@ -23,10 +27,6 @@ class ActionBlock implements BlockInterface
 
     public function toArray(): array
     {
-        if (count($this->elements) > self::MAX_ELEMENTS) {
-            throw new TooMuchElementsException(count($this->elements));
-        }
-
         return [
             'type' => self::ACTIONS_TYPE,
             'elements' => $this->elements
