@@ -45,38 +45,60 @@ This package will help you to build message easily and will warn you if you don'
     );
 ```
 
-## Available features
+## Features
 
-### Blocks
-- Action
-- Context
-- Divider
-- File
-- Header
-- Image
-- Input
-- RichText
-- Section
-- Video
+### [Blocks](https://api.slack.com/reference/block-kit/blocks) 
+- [x] Action
+- [x] Context
+- [x] Divider
+- [x] File
+- [x] Header
+- [x] Image
+- [x] Input
+- [x] RichText
+- [x] Section
+- [x] Video
 
-### Elements 2/17
-- Button
-- DateTimePicker
+### [Elements](https://api.slack.com/reference/block-kit/block-elements)
+- [x] Button
+- [ ] Checkboxes
+- [x] Date pickers
+- [ ] Datetime pickers
+- [ ] Email input
+- [ ] File input
+- [x] Image
+- [ ] Multi-select menus
+- [ ] Number input
+- [ ] Overflow menu
+- [ ] Plain-text input
+- [ ] Radio buttons
+- [ ] Rich text input
+- [ ] Select menus
+- [ ] Time pickers
+- [ ] URL input
+- [ ] Workflow button
 
-#### Rich Text Elements 1/4
-- RichTextSection
+#### [Rich Text Elements](https://api.slack.com/reference/block-kit/blocks#rich_text)
+- [x] RichTextSection
+- [ ] RichTextList
+- [ ] RichTextPreformatted
+- [ ] RichTextQuote
 
-### Objects 4/9
-- ButtonText
-- Image
-- SlackFile
-- Text
+### [Composition Objects](https://api.slack.com/reference/block-kit/composition-objects) 
+- [x] Confirmation dialog object
+- [ ] Conversation filter object
+- [ ] Dispatch action configuration object
+- [ ] Option object
+- [ ] Option group object
+- [x] Text object
+- [ ] Trigger object
+- [ ] Workflow object
+- [x] Slack file object
 
-#### Rich Text Object Type 1/6
-- Channel
-
-## Unavailable features
-
-Almost everything...
-
-List of elements to add : https://api.slack.com/reference/block-kit/block-elements
+#### [Rich Text Object Type](https://api.slack.com/reference/block-kit/blocks#channel-element-type)
+- [x] Channel
+- [ ] Emoji
+- [ ] Link
+- [ ] Text
+- [ ] User
+- [ ] UserGroup

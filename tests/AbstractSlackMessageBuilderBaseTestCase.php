@@ -5,6 +5,7 @@ namespace Arouze\Tests;
 use Arouze\SlackMessageBuilder\Elements\ButtonElement;
 use Arouze\SlackMessageBuilder\Elements\DateTimePickerElement;
 use Arouze\SlackMessageBuilder\Objects\ButtonTextObject;
+use Arouze\SlackMessageBuilder\Objects\ConfirmationDialogObject;
 use Arouze\SlackMessageBuilder\Objects\ImageObject;
 use Arouze\SlackMessageBuilder\Objects\TextObject;
 use Faker\Factory;
@@ -41,9 +42,29 @@ abstract class AbstractSlackMessageBuilderBaseTestCase extends TestCase
     protected static function buildButtonElement(): ButtonElement
     {
         return (new ButtonElement())
-            ->setButtonTextObject(self::buildButtonTextObject());
+            ->setText(self::buildButtonTextObject());
     }
 
+    protected static function buildConfirmDialogObjectElement(): ConfirmationDialogObject
+    {
+        $titleObject = self::buildTextObject();
+        $titleObject->setText('Are you sure?');
+
+        $textObject = self::buildTextObject();
+        $textObject->setText("Wouldn't you prefer a good game of chess?");
+
+        $confirm = self::buildTextObject();
+        $confirm->setText('Do it');
+
+        $deny = self::buildTextObject();
+        $deny->setText("Stop, I've changed my mind!");
+
+        return (new ConfirmationDialogObject())
+            ->setTitle($titleObject)
+            ->setText($textObject)
+            ->setConfirm($confirm)
+            ->setDeny($deny);
+    }
     protected static function buildDateTimePickerElement(): DateTimePickerElement
     {
         return (new DateTimePickerElement());

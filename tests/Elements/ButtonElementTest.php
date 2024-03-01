@@ -3,6 +3,7 @@
 namespace Arouze\Tests\Elements;
 
 use Arouze\SlackMessageBuilder\Elements\ButtonElement;
+use Arouze\SlackMessageBuilder\Exceptions\TooLongTextException;
 use Arouze\Tests\AbstractSlackMessageBuilderBaseTestCase;
 use PHPUnit\Framework\Attributes\Group;
 
@@ -10,40 +11,111 @@ use PHPUnit\Framework\Attributes\Group;
 #[Group("Elements")]
 class ButtonElementTest extends AbstractSlackMessageBuilderBaseTestCase
 {
-    public function testSimpleButtonElement(): void
+    public function testButtonElement(): void
     {
+        $textObject = self::buildButtonTextObject();
         self::assertEquals(
             [
                 'type' => 'button',
-                'text' => [
-                    'type' => 'plain_text',
-                    'text' => 'Simple button text.'
-                ]
+                'text' => $textObject->toArray()
             ],
             (new ButtonElement())
-                ->setButtonTextObject(self::buildButtonTextObject())
+                ->setText($textObject)
                 ->toArray()
         );
     }
 
-    public function testSimpleButtonElementWithDefaultStyle(): void
+    public function testButtonElementWithDefaultStyle(): void
     {
         $buttonElement = (new ButtonElement())
-            ->setButtonTextObject(self::buildButtonTextObject())
+            ->setText(self::buildButtonTextObject())
             ->setStyle(ButtonElement::BUTTON_STYLE_DEFAULT)
             ->toArray();
 
         self::assertArrayNotHasKey('style', $buttonElement);
     }
 
-    public function testSimpleButtonElementWithPrimaryStyle(): void
+    public function testButtonElementWithPrimaryStyle(): void
     {
         $buttonElement = (new ButtonElement())
-            ->setButtonTextObject(self::buildButtonTextObject())
+            ->setText(self::buildButtonTextObject())
             ->setStyle(ButtonElement::BUTTON_STYLE_PRIMARY)
             ->toArray();
 
         self::assertArrayHasKey('style', $buttonElement);
         self::assertEquals(ButtonElement::BUTTON_STYLE_PRIMARY, $buttonElement['style']);
+    }
+
+    public function testButtonElementWithConfirm(): void
+    {
+        $textObject = self::buildButtonTextObject();
+        $confirmDialogObject = self::buildConfirmDialogObjectElement();
+
+        self::assertEquals(
+            [
+                'type' => 'button',
+                'text' => $textObject->toArray(),
+                'confirm' => $confirmDialogObject->toArray()
+            ],
+            (new ButtonElement())
+                ->setText($textObject)
+                ->setConfirm($confirmDialogObject)
+                ->toArray()
+        );
+    }
+
+    public function testButtonElementWithActionId(): void
+    {
+        $textObject = self::buildButtonTextObject();
+        $actionId = $this->fakerGenerator->text();
+        self::assertEquals(
+            [
+                'type' => 'button',
+                'text' => $textObject->toArray(),
+                'action_id' => $actionId
+            ],
+            (new ButtonElement())
+                ->setText($textObject)
+                ->setActionId($actionId)
+                ->toArray()
+        );
+    }
+
+    public function testTooLongTextException(): void
+    {
+        self::expectException(TooLongTextException::class);
+
+        $text = self::buildButtonTextObject();
+        $text->setText($this->fakerGenerator->realTextBetween(76));
+
+        (new ButtonElement())
+            ->setText($text)
+            ->toArray();
+    }
+
+    public function testTooLongUrlException(): void
+    {
+        self::expectException(TooLongTextException::class);
+
+        $text = self::buildButtonTextObject();
+
+        (new ButtonElement())
+            ->setText($text)
+            ->setUrl($this->fakerGenerator->realTextBetween(3001, 3300))
+            ->toArray();
+    }
+
+    public function testTooAccessibilityLabelException(): void
+    {
+        self::expectException(TooLongTextException::class);
+
+        $text = self::buildButtonTextObject();
+
+        (new ButtonElement())
+            ->setText($text)
+            ->setAccessibilityLabel(
+                $this->fakerGenerator->realTextBetween(76)
+            )
+            ->toArray();
     }
 }
