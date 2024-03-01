@@ -16,14 +16,14 @@ class ImageBlockTest extends AbstractSlackMessageBuilderBaseTestCase
     {
         $altText = $this->fakerGenerator->text();
         $imageUrl = $this->fakerGenerator->imageUrl();
-        $title = $this->fakerGenerator->text();
+        $title = self::buildTextObject();
 
         self::assertEquals(
             [
                 'type' => 'image',
                 'alt_text' => $altText,
                 'image_url' => $imageUrl,
-                'title' => $title
+                'title' => $title->toArray()
             ],
             (new ImageBlock())
             ->setAltText($altText)
@@ -60,13 +60,15 @@ class ImageBlockTest extends AbstractSlackMessageBuilderBaseTestCase
     {
         self::expectException(TooLongTextException::class);
 
+        $title = self::buildTextObject();
+
+        $title->setText($this->fakerGenerator->realTextBetween(2001, 3000));
+
         (new ImageBlock())
             ->setAltText(
                 $this->fakerGenerator->text()
             )
-            ->setTitle(
-                $this->fakerGenerator->realTextBetween(2001, 3000)
-            )
+            ->setTitle($title)
             ->setImageUrl($this->fakerGenerator->imageUrl())
             ->toArray();
     }

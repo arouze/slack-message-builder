@@ -7,6 +7,7 @@ use Arouze\SlackMessageBuilder\Common\BlockIdTrait;
 use Arouze\SlackMessageBuilder\Exceptions\MissingFieldException;
 use Arouze\SlackMessageBuilder\Exceptions\TooLongTextException;
 use Arouze\SlackMessageBuilder\Objects\SlackFileObject;
+use Arouze\SlackMessageBuilder\Objects\TextObject;
 
 class ImageBlock implements BlockInterface, BlockIdInterface
 {
@@ -29,7 +30,7 @@ class ImageBlock implements BlockInterface, BlockIdInterface
 
     private ?SlackFileObject $slackFile = null;
 
-    private ?string $title = null;
+    private ?TextObject $title = null;
 
     public function setAltText(string $altText): self
     {
@@ -45,7 +46,7 @@ class ImageBlock implements BlockInterface, BlockIdInterface
         return $this;
     }
 
-    public function setTitle(?string $title): self
+    public function setTitle(?TextObject $title): self
     {
         $this->title = $title;
 
@@ -62,8 +63,8 @@ class ImageBlock implements BlockInterface, BlockIdInterface
             throw new MissingFieldException(self::class, 'image_url, slack_file');
         }
 
-        if (!is_null($this->title) && strlen($this->title) > self::MAX_TITLE_LENGTH) {
-            throw new TooLongTextException(strlen($this->title), self::MAX_TITLE_LENGTH);
+        if (!is_null($this->title) && strlen($this->title->getText()) > self::MAX_TITLE_LENGTH) {
+            throw new TooLongTextException(strlen($this->title->getText()), self::MAX_TITLE_LENGTH);
         }
     }
 
@@ -88,7 +89,7 @@ class ImageBlock implements BlockInterface, BlockIdInterface
     private function handleTitle(): self
     {
         if (!is_null($this->title)) {
-            $this->block['title'] = $this->title;
+            $this->block['title'] = $this->title->toArray();
         }
 
         return $this;
