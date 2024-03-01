@@ -10,9 +10,10 @@ use Arouze\SlackMessageBuilder\Exceptions\TooLongTextException;
 use Arouze\SlackMessageBuilder\Objects\ButtonTextObject;
 use Arouze\SlackMessageBuilder\Objects\ConfirmationDialogObject;
 
-class ButtonElement implements BlockElementsInterface, ActionIdInterface
+class ButtonElement implements BlockElementsInterface, ActionIdInterface, ConfirmableElementInterface
 {
     use ActionIdTrait;
+    use ConfirmElementTrait;
 
     // @doc : https://api.slack.com/reference/block-kit/block-elements#button
 
@@ -41,7 +42,6 @@ class ButtonElement implements BlockElementsInterface, ActionIdInterface
 
     private string $style = self::BUTTON_STYLE_DEFAULT;
 
-    private ?ConfirmationDialogObject $confirm = null;
     private ?string $accessibilityLabel = null;
 
     public function setText(ButtonTextObject $text): ButtonElement
@@ -68,13 +68,6 @@ class ButtonElement implements BlockElementsInterface, ActionIdInterface
     public function setValue(?string $value): ButtonElement
     {
         $this->value = $value;
-
-        return $this;
-    }
-
-    public function setConfirm(?ConfirmationDialogObject $confirm): ButtonElement
-    {
-        $this->confirm = $confirm;
 
         return $this;
     }
@@ -139,15 +132,6 @@ class ButtonElement implements BlockElementsInterface, ActionIdInterface
     {
         if (!is_null($this->value)) {
             $this->block['value'] = $this->value;
-        }
-
-        return $this;
-    }
-
-    private function handleConfirm(): self
-    {
-        if (!is_null($this->confirm)) {
-            $this->block['confirm'] = $this->confirm->toArray();
         }
 
         return $this;

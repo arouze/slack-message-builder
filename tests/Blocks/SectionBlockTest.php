@@ -6,7 +6,6 @@ use Arouze\SlackMessageBuilder\Blocks\SectionBlock;
 use Arouze\SlackMessageBuilder\Exceptions\MissingFieldException;
 use Arouze\SlackMessageBuilder\Exceptions\TooFieldsException;
 use Arouze\SlackMessageBuilder\Exceptions\TooLongBlockIdException;
-use Arouze\SlackMessageBuilder\Exceptions\TooLongBuildIdException;
 use Arouze\SlackMessageBuilder\Exceptions\TooLongFieldTextException;
 use Arouze\Tests\AbstractSlackMessageBuilderBaseTestCase;
 use PHPUnit\Framework\Attributes\Group;

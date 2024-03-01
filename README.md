@@ -61,9 +61,9 @@ This package will help you to build message easily and will warn you if you don'
 
 ### [Elements](https://api.slack.com/reference/block-kit/block-elements)
 - [x] Button
-- [ ] Checkboxes
-- [x] Date pickers
-- [ ] Datetime pickers
+- [x] Checkboxes
+- [ ] Date pickers
+- [x] Datetime pickers
 - [ ] Email input
 - [ ] File input
 - [x] Image
@@ -88,7 +88,7 @@ This package will help you to build message easily and will warn you if you don'
 - [x] Confirmation dialog object
 - [ ] Conversation filter object
 - [ ] Dispatch action configuration object
-- [ ] Option object
+- [x] Option object
 - [ ] Option group object
 - [x] Text object
 - [ ] Trigger object

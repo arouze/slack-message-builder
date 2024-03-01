@@ -17,7 +17,7 @@ class ActionBlock implements BlockInterface
     public function addElement(ElementInterface $element): self
     {
         if (count($this->elements) >= self::MAX_ELEMENTS) {
-            throw new TooMuchElementsException(count($this->elements));
+            throw new TooMuchElementsException(count($this->elements), self::MAX_ELEMENTS, self::class);
         }
 
         $this->elements[] = $element->toArray();
