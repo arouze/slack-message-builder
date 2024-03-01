@@ -47,12 +47,13 @@ This package will help you to build message easily and will warn you if you don'
 
 ## Available features
 
-### Blocks 8/10
+### Blocks 9/10
 - Action
 - Context
 - Divider
 - File
 - Header
+- Image
 - Input
 - Section
 - RichText
