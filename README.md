@@ -47,7 +47,7 @@ This package will help you to build message easily and will warn you if you don'
 
 ## Available features
 
-### Blocks 9/10
+### Blocks
 - Action
 - Context
 - Divider
@@ -55,8 +55,9 @@ This package will help you to build message easily and will warn you if you don'
 - Header
 - Image
 - Input
-- Section
 - RichText
+- Section
+- Video
 
 ### Elements 2/17
 - Button

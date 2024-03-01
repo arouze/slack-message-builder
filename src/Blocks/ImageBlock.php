@@ -16,13 +16,13 @@ class ImageBlock implements BlockInterface, BlockIdInterface
     // @doc : https://api.slack.com/reference/block-kit/blocks#image
     private const IMAGE_TYPE = 'image';
 
-    private array $block = [
-        'type' => self::IMAGE_TYPE
-    ];
-
     private const MAX_ALT_TEXT_LENGTH = 2000;
 
     private const MAX_TITLE_LENGTH = 2000;
+
+    private array $block = [
+        'type' => self::IMAGE_TYPE
+    ];
 
     private string $altText;
 
