@@ -15,6 +15,7 @@ class DatePickerElement implements BlockElementsInterface, ActionIdInterface, Co
     use ActionIdTrait;
     use ConfirmElementTrait;
     use FocusOnLoadTrait;
+    use PlaceHolderTrait;
 
     // @doc : https://api.slack.com/reference/block-kit/block-elements#datepicker
     private const DATE_PICKER_ELEMENT_TYPE = 'datepicker';
@@ -27,18 +28,9 @@ class DatePickerElement implements BlockElementsInterface, ActionIdInterface, Co
 
     private ?string $initialDate = null;
 
-    private ?TextObject $placeholder = null;
-
     public function setInitialDate(?string $initialDate): DatePickerElement
     {
         $this->initialDate = $initialDate;
-
-        return $this;
-    }
-
-    public function setPlaceholder(?TextObject $placeholder): DatePickerElement
-    {
-        $this->placeholder = $placeholder;
 
         return $this;
     }
@@ -47,15 +39,6 @@ class DatePickerElement implements BlockElementsInterface, ActionIdInterface, Co
     {
         if (!is_null($this->initialDate)) {
             $this->block['initial_date'] = $this->initialDate;
-        }
-
-        return $this;
-    }
-
-    private function handlePlaceHolder(): self
-    {
-        if (!is_null($this->placeholder)) {
-            $this->block['placeholder'] = $this->placeholder->toArray();
         }
 
         return $this;
