@@ -10,10 +10,11 @@ use Arouze\SlackMessageBuilder\Common\ActionIdTrait;
 use Arouze\SlackMessageBuilder\Exceptions\TooMuchOptionsException;
 use Arouze\SlackMessageBuilder\Objects\OptionObject;
 
-class CheckBoxElement implements BlockElementsInterface, ActionIdInterface, ConfirmableElementInterface
+class CheckBoxElement implements BlockElementsInterface, ActionIdInterface, ConfirmableElementInterface, FocusableInterface // phpcs:ignore
 {
     use ActionIdTrait;
     use ConfirmElementTrait;
+    use FocusOnLoadTrait;
 
     // @doc : https://api.slack.com/reference/block-kit/block-elements#checkboxes
 
@@ -29,18 +30,9 @@ class CheckBoxElement implements BlockElementsInterface, ActionIdInterface, Conf
 
     private array $initialOptions = [];
 
-    private bool $focusOnLoad = false;
-
     public function addOption(OptionObject $optionObject): self
     {
         $this->options[] = $optionObject;
-
-        return $this;
-    }
-
-    public function focusOnLoad(): self
-    {
-        $this->focusOnLoad = true;
 
         return $this;
     }
@@ -67,15 +59,6 @@ class CheckBoxElement implements BlockElementsInterface, ActionIdInterface, Conf
         /** @var OptionObject $initialOption */
         foreach ($this->initialOptions as $initialOption) {
             $this->block['initial_options'][] = $initialOption->toArray();
-        }
-
-        return $this;
-    }
-
-    private function handleFocusOnLoad(): self
-    {
-        if ($this->focusOnLoad === true) {
-            $this->block['focus_on_load'] = true;
         }
 
         return $this;
