@@ -65,7 +65,7 @@ This package will help you to build message easily and will warn you if you don'
 - [x] Date pickers
 - [x] Datetime pickers
 - [x] Email input
-- [ ] File input
+- [x] File input
 - [x] Image
 - [ ] Multi-select menus
 - [ ] Number input
