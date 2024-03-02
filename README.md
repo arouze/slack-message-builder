@@ -62,7 +62,7 @@ This package will help you to build message easily and will warn you if you don'
 ### [Elements](https://api.slack.com/reference/block-kit/block-elements)
 - [x] Button
 - [x] Checkboxes
-- [ ] Date pickers
+- [x] Date pickers
 - [x] Datetime pickers
 - [ ] Email input
 - [ ] File input
