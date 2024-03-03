@@ -15,6 +15,8 @@ class CheckBoxElement implements BlockElementsInterface, ActionIdInterface, Conf
     use ActionIdTrait;
     use ConfirmElementTrait;
     use FocusOnLoadTrait;
+    use InitialOptionsTrait;
+    use OptionObjectTrait;
 
     // @doc : https://api.slack.com/reference/block-kit/block-elements#checkboxes
 
@@ -26,49 +28,9 @@ class CheckBoxElement implements BlockElementsInterface, ActionIdInterface, Conf
         'type' => self::CHECKBOXES_TYPE
     ];
 
-    private array $options = [];
-
-    private array $initialOptions = [];
-
-    public function addOption(OptionObject $optionObject): self
-    {
-        $this->options[] = $optionObject;
-
-        return $this;
-    }
-
-    public function addInitialOptions(OptionObject $optionObject): self
-    {
-        $this->initialOptions[] = $optionObject;
-
-        return $this;
-    }
-
-    private function handleOptions(): self
-    {
-        /** @var OptionObject $option */
-        foreach ($this->options as $option) {
-            $this->block['options'][] = $option->toArray();
-        }
-
-        return $this;
-    }
-
-    private function handleInitialOptions(): self
-    {
-        /** @var OptionObject $initialOption */
-        foreach ($this->initialOptions as $initialOption) {
-            $this->block['initial_options'][] = $initialOption->toArray();
-        }
-
-        return $this;
-    }
-
     private function validate(): void
     {
-        if (count($this->options) > self::MAX_OPTIONS) {
-            throw new TooMuchOptionsException(count($this->options), self::MAX_OPTIONS, self::class);
-        }
+        $this->validateMaxOptions(self::MAX_OPTIONS);
     }
 
     public function toArray(): array

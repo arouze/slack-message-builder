@@ -5,6 +5,7 @@ namespace Arouze\Tests;
 use Arouze\SlackMessageBuilder\Elements\ImageElement;
 use Arouze\SlackMessageBuilder\Objects\ButtonTextObject;
 use Arouze\SlackMessageBuilder\Objects\ConfirmationDialogObject;
+use Arouze\SlackMessageBuilder\Objects\OptionGroupObject;
 use Arouze\SlackMessageBuilder\Objects\OptionObject;
 use Arouze\SlackMessageBuilder\Objects\SlackFileObject;
 use Arouze\SlackMessageBuilder\Objects\TextObject;
@@ -74,5 +75,19 @@ trait ObjectBuilderTrait
         return (new OptionObject())
             ->setText(self::buildTextObject())
             ->setValue($value);
+    }
+
+    protected static function buildOptionGroupObject(?OptionObject $optionObject = null): OptionGroupObject
+    {
+        $optionGroupObject = (new OptionGroupObject())
+            ->setLabel(self::buildTextObject());
+
+        if (is_null($optionObject)) {
+            $optionObject = self::buildOptionObject();
+        }
+
+        $optionGroupObject->addOption($optionObject);
+
+        return $optionGroupObject;
     }
 }
