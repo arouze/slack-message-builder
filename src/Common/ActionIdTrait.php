@@ -19,7 +19,7 @@ trait ActionIdTrait
         return $this;
     }
 
-    public function handleActionId(): ActionIdInterface
+    public function handleActionId(): self
     {
         if (!is_null($this->actionId)) {
             $this->block['action_id'] = $this->actionId;

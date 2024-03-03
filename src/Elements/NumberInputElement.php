@@ -12,6 +12,7 @@ class NumberInputElement implements BlockElementsInterface, ActionIdInterface, F
     use ActionIdTrait;
     use DispatchActionConfigTrait;
     use FocusOnLoadTrait;
+    use InitialValueTrait;
     use PlaceHolderTrait;
 
     // @doc : https://api.slack.com/reference/block-kit/block-elements#number
@@ -26,8 +27,6 @@ class NumberInputElement implements BlockElementsInterface, ActionIdInterface, F
 
     private bool $isDecimalAllowed = false;
 
-    private ?string $initialValue = null;
-
     private ?string $minValue = null;
 
     private ?string $maxValue = null;
@@ -35,13 +34,6 @@ class NumberInputElement implements BlockElementsInterface, ActionIdInterface, F
     public function enableDecimal(): self
     {
         $this->isDecimalAllowed = true;
-
-        return $this;
-    }
-
-    public function setInitialValue(?string $initialValue): self
-    {
-        $this->initialValue = $initialValue;
 
         return $this;
     }
@@ -56,15 +48,6 @@ class NumberInputElement implements BlockElementsInterface, ActionIdInterface, F
     public function setMaxValue(?string $maxValue): NumberInputElement
     {
         $this->maxValue = $maxValue;
-
-        return $this;
-    }
-
-    private function handleInitialValue(): self
-    {
-        if (!is_null($this->initialValue)) {
-            $this->block['initial_value'] = $this->initialValue;
-        }
 
         return $this;
     }
@@ -103,13 +86,13 @@ class NumberInputElement implements BlockElementsInterface, ActionIdInterface, F
         $this->validate();
 
         $this
-            ->handleActionId()
             ->handleInitialValue()
             ->handlePlaceHolder()
             ->handleFocusOnLoad()
             ->handleDispatchActionConfig()
             ->handleMinValue()
-            ->handleMaxValue();
+            ->handleMaxValue()
+            ->handleActionId();
 
         $this->block['is_decimal_allowed'] = $this->isDecimalAllowed;
 

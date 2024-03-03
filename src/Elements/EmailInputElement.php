@@ -13,6 +13,7 @@ class EmailInputElement implements BlockElementsInterface, ActionIdInterface, Fo
     use ActionIdTrait;
     use DispatchActionConfigTrait;
     use FocusOnLoadTrait;
+    use InitialValueTrait;
     use PlaceHolderTrait;
 
     // @doc : https://api.slack.com/reference/block-kit/block-elements#email
@@ -23,25 +24,6 @@ class EmailInputElement implements BlockElementsInterface, ActionIdInterface, Fo
     private array $block = [
         'type' => self::EMAIL_INPUT_ELEMENT_TYPE
     ];
-
-
-    private ?string $initialValue = null;
-
-    public function setInitialValue(?string $initialValue): self
-    {
-        $this->initialValue = $initialValue;
-
-        return $this;
-    }
-
-    private function handleInitialValue(): self
-    {
-        if (!is_null($this->initialValue)) {
-            $this->block['initial_value'] = $this->initialValue;
-        }
-
-        return $this;
-    }
 
     private function validate(): void
     {

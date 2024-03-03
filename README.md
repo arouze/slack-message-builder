@@ -70,7 +70,7 @@ This package will help you to build message easily and will warn you if you don'
 - [x] Multi-select menus
 - [x] Number input
 - [x] Overflow menu
-- [ ] Plain-text input
+- [x] Plain-text input
 - [ ] Radio buttons
 - [ ] Rich text input
 - [ ] Select menus
