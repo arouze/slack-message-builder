@@ -71,7 +71,7 @@ This package will help you to build message easily and will warn you if you don'
 - [x] Number input
 - [x] Overflow menu
 - [x] Plain-text input
-- [ ] Radio buttons
+- [x] Radio buttons
 - [ ] Rich text input
 - [ ] Select menus
 - [ ] Time pickers
