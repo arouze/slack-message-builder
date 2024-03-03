@@ -69,7 +69,7 @@ This package will help you to build message easily and will warn you if you don'
 - [x] Image
 - [x] Multi-select menus
 - [x] Number input
-- [ ] Overflow menu
+- [x] Overflow menu
 - [ ] Plain-text input
 - [ ] Radio buttons
 - [ ] Rich text input
