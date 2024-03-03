@@ -11,6 +11,7 @@ use Arouze\Tests\Objects\DispatchActionConfigurationObject;
 class EmailInputElement implements BlockElementsInterface, ActionIdInterface, FocusableInterface
 {
     use ActionIdTrait;
+    use DispatchActionConfigTrait;
     use FocusOnLoadTrait;
     use PlaceHolderTrait;
 
@@ -23,20 +24,12 @@ class EmailInputElement implements BlockElementsInterface, ActionIdInterface, Fo
         'type' => self::EMAIL_INPUT_ELEMENT_TYPE
     ];
 
-    private ?DispatchActionConfigurationObject $dispatchActionConfig = null;
 
     private ?string $initialValue = null;
 
     public function setInitialValue(?string $initialValue): self
     {
         $this->initialValue = $initialValue;
-
-        return $this;
-    }
-
-    public function setDispatchActionConfig(?DispatchActionConfigurationObject $dispatchActionConfig): self
-    {
-        $this->dispatchActionConfig = $dispatchActionConfig;
 
         return $this;
     }
@@ -50,19 +43,9 @@ class EmailInputElement implements BlockElementsInterface, ActionIdInterface, Fo
         return $this;
     }
 
-    private function handleDispatchActionConfig(): self
-    {
-        if (!is_null($this->dispatchActionConfig)) {
-            $this->block['dispatch_action_config'] = $this->dispatchActionConfig->toArray();
-        }
-
-        return $this;
-    }
     private function validate(): void
     {
-        if (!is_null($this->placeholder) && strlen($this->placeholder->getText()) > self::MAX_PLACEHOLDER_LENGTH) {
-            throw new TooLongTextException(strlen($this->placeholder->getText()), self::MAX_PLACEHOLDER_LENGTH);
-        }
+        $this->validatePlaceHolder(self::MAX_PLACEHOLDER_LENGTH);
     }
 
     public function toArray(): array

@@ -2,6 +2,7 @@
 
 namespace Arouze\SlackMessageBuilder\Elements;
 
+use Arouze\SlackMessageBuilder\Exceptions\TooLongTextException;
 use Arouze\SlackMessageBuilder\Objects\TextObject;
 
 trait PlaceHolderTrait
@@ -22,5 +23,12 @@ trait PlaceHolderTrait
         }
 
         return $this;
+    }
+
+    private function validatePlaceHolder(int $maxPlaceholderLength): void
+    {
+        if (!is_null($this->placeholder) && strlen($this->placeholder->getText()) > $maxPlaceholderLength) {
+            throw new TooLongTextException(strlen($this->placeholder->getText()), $maxPlaceholderLength, 'placeholder');
+        }
     }
 }

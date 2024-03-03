@@ -67,8 +67,8 @@ This package will help you to build message easily and will warn you if you don'
 - [x] Email input
 - [x] File input
 - [x] Image
-- [ ] Multi-select menus
-- [ ] Number input
+- [x] Multi-select menus
+- [x] Number input
 - [ ] Overflow menu
 - [ ] Plain-text input
 - [ ] Radio buttons
@@ -89,7 +89,7 @@ This package will help you to build message easily and will warn you if you don'
 - [ ] Conversation filter object
 - [x] Dispatch action configuration object
 - [x] Option object
-- [ ] Option group object
+- [x] Option group object
 - [x] Text object
 - [ ] Trigger object
 - [ ] Workflow object
