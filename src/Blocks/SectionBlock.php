@@ -4,11 +4,11 @@ namespace Arouze\SlackMessageBuilder\Blocks;
 
 use Arouze\SlackMessageBuilder\Common\BlockIdInterface;
 use Arouze\SlackMessageBuilder\Common\BlockIdTrait;
+use Arouze\SlackMessageBuilder\Elements\BlockElementsInterface;
 use Arouze\SlackMessageBuilder\Exceptions\MissingFieldException;
 use Arouze\SlackMessageBuilder\Exceptions\TooFieldsException;
 use Arouze\SlackMessageBuilder\Exceptions\TooLongBuildIdException;
 use Arouze\SlackMessageBuilder\Exceptions\TooLongFieldTextException;
-use Arouze\SlackMessageBuilder\Objects\ObjectInterface;
 use Arouze\SlackMessageBuilder\Objects\TextObject;
 
 class SectionBlock implements BlockInterface, BlockIdInterface
@@ -26,7 +26,7 @@ class SectionBlock implements BlockInterface, BlockIdInterface
 
     private ?TextObject $textObject = null;
 
-    private ?ObjectInterface $accessory = null;
+    private ?BlockElementsInterface $accessory = null;
 
     private array $block = [
         'type' => self::SECTION_TYPE
@@ -103,7 +103,7 @@ class SectionBlock implements BlockInterface, BlockIdInterface
         return $this;
     }
 
-    public function setAccessory(?ObjectInterface $accessory): SectionBlock
+    public function setAccessory(?BlockElementsInterface $accessory): SectionBlock
     {
         $this->accessory = $accessory;
 

@@ -2,11 +2,13 @@
 
 namespace Arouze\Tests;
 
+use Arouze\SlackMessageBuilder\Elements\ImageElement;
 use Arouze\SlackMessageBuilder\Objects\ButtonTextObject;
 use Arouze\SlackMessageBuilder\Objects\ConfirmationDialogObject;
-use Arouze\SlackMessageBuilder\Objects\ImageObject;
 use Arouze\SlackMessageBuilder\Objects\OptionObject;
+use Arouze\SlackMessageBuilder\Objects\SlackFileObject;
 use Arouze\SlackMessageBuilder\Objects\TextObject;
+use Faker\Factory;
 
 trait ObjectBuilderTrait
 {
@@ -15,11 +17,29 @@ trait ObjectBuilderTrait
         return (new TextObject())->setText('Simple text.');
     }
 
-    protected static function buildImageObject(): ImageObject
+    protected static function buildImageObject(): ImageElement
     {
-        return (new ImageObject())
+        return (new ImageElement())
             ->setAltText('Alt text')
             ->setImageUrl('https://s3-media3.fl.yelpcdn.com/bphoto/c7ed05m9lC2EmA3Aruue7A/o.jpg');
+    }
+
+    protected static function buildSlackFile(
+        ?string $url = null,
+        ?string $id = null
+    ): SlackFileObject
+    {
+        if (is_null($url)) {
+            $url = 'https://s3-media3.fl.yelpcdn.com/bphoto/c7ed05m9lC2EmA3Aruue7A/o.jpg';
+        }
+
+        if (is_null($id)) {
+            $id = '123ABC';
+        }
+
+        return (new SlackFileObject())
+            ->setUrl($url)
+            ->setId($id);
     }
 
     protected static function buildButtonTextObject(): ButtonTextObject

@@ -2,7 +2,7 @@
 
 namespace Arouze\SlackMessageBuilder\Exceptions;
 
-use Arouze\SlackMessageBuilder\Objects\ImageObject;
+use Arouze\SlackMessageBuilder\Elements\ImageElement;
 
 class TooLongTitleException extends AbstractBaseException
 {
@@ -14,7 +14,7 @@ class TooLongTitleException extends AbstractBaseException
                 "Title is too long (%d). " .
                 "Maximum length is %d (@see https://api.slack.com/reference/block-kit/block-elements#image)",
                 $titleLength,
-                ImageObject::MAXIMUM_TITLE_LENGTH
+                ImageElement::MAXIMUM_TITLE_LENGTH
             ),
             self::TOO_LONG_TITLE
         );

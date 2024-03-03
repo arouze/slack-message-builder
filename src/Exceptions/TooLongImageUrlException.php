@@ -2,7 +2,7 @@
 
 namespace Arouze\SlackMessageBuilder\Exceptions;
 
-use Arouze\SlackMessageBuilder\Objects\ImageObject;
+use Arouze\SlackMessageBuilder\Elements\ImageElement;
 
 class TooLongImageUrlException extends AbstractBaseException
 {
@@ -14,7 +14,7 @@ class TooLongImageUrlException extends AbstractBaseException
                 "Image url is too long (%d). " .
                 "Maximum length is %d (@see https://api.slack.com/reference/block-kit/block-elements#image)",
                 $textLength,
-                ImageObject::MAXIMUM_IMAGE_URL_LENGTH
+                ImageElement::MAXIMUM_IMAGE_URL_LENGTH
             ),
             self::TOO_LONG_IMAGE_URL_EXCEPTION_CODE
         );

@@ -4,8 +4,8 @@ namespace Arouze\SlackMessageBuilder\Blocks;
 
 use Arouze\SlackMessageBuilder\Common\BlockIdInterface;
 use Arouze\SlackMessageBuilder\Common\BlockIdTrait;
+use Arouze\SlackMessageBuilder\Elements\ImageElement;
 use Arouze\SlackMessageBuilder\Exceptions\TooMuchElementsException;
-use Arouze\SlackMessageBuilder\Objects\ImageObject;
 use Arouze\SlackMessageBuilder\Objects\TextObject;
 
 class ContextBlock implements BlockInterface, BlockIdInterface
@@ -19,7 +19,7 @@ class ContextBlock implements BlockInterface, BlockIdInterface
 
     private array $elements = [];
 
-    public function addElement(TextObject|ImageObject $element): self
+    public function addElement(TextObject|ImageElement $element): self
     {
         if (count($this->elements) >= self::MAX_ELEMENTS) {
             throw new TooMuchElementsException(count($this->elements), self::MAX_ELEMENTS, self::class);
