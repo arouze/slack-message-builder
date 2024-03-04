@@ -9,49 +9,37 @@ use Arouze\SlackMessageBuilder\Common\ActionIdInterface;
 use Arouze\SlackMessageBuilder\Common\ActionIdTrait;
 use Arouze\SlackMessageBuilder\Exceptions\IncorrectOptionsConfigurationException;
 
-class MultiSelectMenuElement implements BlockElementsInterface, ActionIdInterface, ConfirmableElementInterface, FocusableInterface // phpcs:ignore
+class SelectMenuElement implements BlockElementsInterface, ActionIdInterface, ConfirmableElementInterface, FocusableInterface // phpcs:ignore
 {
     use ActionIdTrait;
-    use ConfirmElementTrait;
-    use FocusOnLoadTrait;
-    use InitialOptionsTrait;
     use OptionObjectTrait;
     use OptionGroupObjectTrait;
+    use InitialOptionsTrait;
+    use ConfirmElementTrait;
+    use FocusOnLoadTrait;
     use PlaceHolderTrait;
 
-    // @doc : https://api.slack.com/reference/block-kit/block-elements#multi_select
-    private const MULTI_SELECT_MENU_TYPE = 'multi_static_select';
+    // @doc : https://api.slack.com/reference/block-kit/block-elements#select
+
+    private const SELECT_MENU_TYPE = 'static_select';
 
     private const MAX_OPTIONS = 100;
 
     private const MAX_OPTIONS_GROUP = 100;
 
+    private const PLACEHOLDER_MAX_LENGTH = 150;
+
     private array $block = [
-        'type' => self::MULTI_SELECT_MENU_TYPE
+        'type' => self::SELECT_MENU_TYPE
     ];
 
-    private ?int $maxSelectedItems = null;
-
-    public function setMaxSelectedItems(?int $maxSelectedItems): self
-    {
-        $this->maxSelectedItems = $maxSelectedItems;
-
-        return $this;
-    }
-
-    private function handleMaxSelectedItems(): self
-    {
-        if (!is_null($this->maxSelectedItems)) {
-            $this->block['max_selected_items'] = $this->maxSelectedItems;
-        }
-
-        return $this;
-    }
     private function validate(): void
     {
         $this->validateMaxOptions(self::MAX_OPTIONS);
 
         $this->validateOptionGroup(self::MAX_OPTIONS_GROUP);
+
+        $this->validatePlaceHolder(self::PLACEHOLDER_MAX_LENGTH);
 
         if (count($this->options) && count($this->optionGroups)) {
             throw new IncorrectOptionsConfigurationException(self::class);
@@ -63,14 +51,14 @@ class MultiSelectMenuElement implements BlockElementsInterface, ActionIdInterfac
         $this->validate();
 
         $this
-            ->handleOptions()
+            ->handleActionId()
             ->handleOptionGroup()
+            ->handleOptions()
             ->handleInitialOptions()
             ->handleConfirm()
             ->handleFocusOnLoad()
-            ->handleMaxSelectedItems()
-            ->handleActionId()
-            ;
+            ->handlePlaceHolder()
+        ;
 
         return $this->block;
     }

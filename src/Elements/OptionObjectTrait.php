@@ -18,6 +18,10 @@ trait OptionObjectTrait
 
     private function handleOptions(): self
     {
+        if (count($this->options)) {
+            $this->block['options'] = [];
+        }
+
         /** @var OptionObject $option */
         foreach ($this->options as $option) {
             $this->block['options'][] = $option->toArray();

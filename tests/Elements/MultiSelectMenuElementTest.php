@@ -74,6 +74,22 @@ class MultiSelectMenuElementTest extends AbstractSlackMessageBuilderBaseTestCase
         );
     }
 
+    public function testMultiSelectMenuWithOptionGroup(): void
+    {
+        $optionGroup = self::buildOptionGroupObject();
+        self::assertEquals(
+            [
+                'type' => 'multi_static_select',
+                'option_groups' => [
+                    $optionGroup->toArray()
+                ]
+            ],
+            (new MultiSelectMenuElement())
+                ->addOptionGroup($optionGroup)
+                ->toArray()
+        );
+    }
+
     public function testMultiSelectMenuWithTooMuchOptionsGroupsException(): void
     {
         self::expectException(TooMuchOptionGroupsException::class);
