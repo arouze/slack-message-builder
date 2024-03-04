@@ -8,7 +8,7 @@ trait ActionIdTrait
 {
     protected ?string $actionId = null;
 
-    public function setActionId(?string $actionId): ActionIdInterface
+    public function setActionId(?string $actionId): self
     {
         if (strlen($actionId) > ActionIdInterface::ACTION_ID_LENGTH) {
             throw new TooLongTextException(strlen($actionId), ActionIdInterface::ACTION_ID_LENGTH);

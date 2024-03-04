@@ -4,6 +4,7 @@ namespace Arouze\Tests;
 
 use Arouze\SlackMessageBuilder\Elements\ButtonElement;
 use Arouze\SlackMessageBuilder\Elements\DateTimePickerElement;
+use Arouze\SlackMessageBuilder\Elements\RichText\RichTextSectionElement;
 use Faker\Factory;
 use Faker\Generator;
 use PHPUnit\Framework\TestCase;
@@ -28,5 +29,10 @@ abstract class AbstractSlackMessageBuilderBaseTestCase extends TestCase
     protected static function buildDateTimePickerElement(): DateTimePickerElement
     {
         return (new DateTimePickerElement());
+    }
+
+    protected static function buildRichTextSectionElement(): RichTextSectionElement
+    {
+        return (new RichTextSectionElement());
     }
 }

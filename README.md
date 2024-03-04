@@ -72,7 +72,7 @@ This package will help you to build message easily and will warn you if you don'
 - [x] Overflow menu
 - [x] Plain-text input
 - [x] Radio buttons
-- [ ] Rich text input
+- [x] Rich text input
 - [ ] Select menus
 - [ ] Time pickers
 - [ ] URL input
