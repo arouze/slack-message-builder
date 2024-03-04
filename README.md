@@ -73,8 +73,8 @@ This package will help you to build message easily and will warn you if you don'
 - [x] Plain-text input
 - [x] Radio buttons
 - [x] Rich text input
-- [ ] Select menus
-- [ ] Time pickers
+- [x] Select menus
+- [x] Time pickers
 - [ ] URL input
 - [ ] Workflow button
 
