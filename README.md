@@ -75,7 +75,7 @@ This package will help you to build message easily and will warn you if you don'
 - [x] Rich text input
 - [x] Select menus
 - [x] Time pickers
-- [ ] URL input
+- [x] URL input
 - [ ] Workflow button
 
 #### [Rich Text Elements](https://api.slack.com/reference/block-kit/blocks#rich_text)
