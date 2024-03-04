@@ -5,8 +5,6 @@ namespace Arouze\SlackMessageBuilder\Elements;
 use Arouze\SlackMessageBuilder\Blocks\InputBlock;
 use Arouze\SlackMessageBuilder\Common\ActionIdInterface;
 use Arouze\SlackMessageBuilder\Common\ActionIdTrait;
-use Arouze\SlackMessageBuilder\Exceptions\TooLongTextException;
-use Arouze\Tests\Objects\DispatchActionConfigurationObject;
 
 class EmailInputElement implements BlockElementsInterface, ActionIdInterface, FocusableInterface
 {

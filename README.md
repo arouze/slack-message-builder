@@ -91,8 +91,8 @@ This package will help you to build message easily and will warn you if you don'
 - [x] Option object
 - [x] Option group object
 - [x] Text object
-- [ ] Trigger object
-- [ ] Workflow object
+- [x] Trigger object
+- [x] Workflow object
 - [x] Slack file object
 
 #### [Rich Text Object Type](https://api.slack.com/reference/block-kit/blocks#channel-element-type)

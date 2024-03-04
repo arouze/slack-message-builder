@@ -8,7 +8,6 @@ use Arouze\SlackMessageBuilder\Blocks\SectionBlock;
 use Arouze\SlackMessageBuilder\Common\ActionIdInterface;
 use Arouze\SlackMessageBuilder\Common\ActionIdTrait;
 use Arouze\SlackMessageBuilder\Exceptions\TooLongTextException;
-use Arouze\SlackMessageBuilder\Objects\TextObject;
 
 class DatePickerElement implements BlockElementsInterface, ActionIdInterface, ConfirmableElementInterface, FocusableInterface // phpcs:ignore
 {

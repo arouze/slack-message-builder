@@ -8,18 +8,16 @@ use Arouze\SlackMessageBuilder\Common\ActionIdInterface;
 use Arouze\SlackMessageBuilder\Common\ActionIdTrait;
 use Arouze\SlackMessageBuilder\Exceptions\TooLongTextException;
 use Arouze\SlackMessageBuilder\Objects\ButtonTextObject;
-use Arouze\SlackMessageBuilder\Objects\ConfirmationDialogObject;
 
 class ButtonElement implements BlockElementsInterface, ActionIdInterface, ConfirmableElementInterface
 {
+    use AccessibilityLabelTrait;
     use ActionIdTrait;
     use ConfirmElementTrait;
+    use StyleTrait;
 
     // @doc : https://api.slack.com/reference/block-kit/block-elements#button
 
-    public const BUTTON_STYLE_DEFAULT = 'default';
-    public const BUTTON_STYLE_PRIMARY = 'primary';
-    public const BUTTON_STYLE_DANGER = 'danger';
     private const BUTTON_ELEMENT_TYPE = 'button';
 
     private const MAX_TEXT_LENGTH = 75;
@@ -40,20 +38,9 @@ class ButtonElement implements BlockElementsInterface, ActionIdInterface, Confir
 
     private ?string $value = null;
 
-    private string $style = self::BUTTON_STYLE_DEFAULT;
-
-    private ?string $accessibilityLabel = null;
-
     public function setText(ButtonTextObject $text): ButtonElement
     {
         $this->text = $text;
-
-        return $this;
-    }
-
-    public function setStyle(string $style): ButtonElement
-    {
-        $this->style = $style;
 
         return $this;
     }
@@ -72,13 +59,6 @@ class ButtonElement implements BlockElementsInterface, ActionIdInterface, Confir
         return $this;
     }
 
-    public function setAccessibilityLabel(?string $accessibilityLabel): ButtonElement
-    {
-        $this->accessibilityLabel = $accessibilityLabel;
-
-        return $this;
-    }
-
     private function validate(): void
     {
         if (strlen($this->text->getText()) > self::MAX_TEXT_LENGTH) {
@@ -93,30 +73,7 @@ class ButtonElement implements BlockElementsInterface, ActionIdInterface, Confir
             throw new TooLongTextException(strlen($this->value), self::MAX_VALUE_LENGTH, 'value');
         }
 
-        if (
-            !is_null($this->accessibilityLabel) &&
-            strlen($this->accessibilityLabel) > self::MAX_ACCESSIBILITY_LABEL_LENGTH
-        ) {
-            throw new TooLongTextException(
-                strlen($this->accessibilityLabel),
-                self::MAX_ACCESSIBILITY_LABEL_LENGTH,
-                'accessibility_label'
-            );
-        }
-    }
-
-    private function handleStyle(): self
-    {
-        if ($this->style !== self::BUTTON_STYLE_DEFAULT) {
-            $this->block = array_merge(
-                $this->block,
-                [
-                    'style' => $this->style
-                ]
-            );
-        }
-
-        return $this;
+        $this->validateAccessibilityLabel(self::MAX_ACCESSIBILITY_LABEL_LENGTH);
     }
 
     private function handleUrl(): self
@@ -137,14 +94,6 @@ class ButtonElement implements BlockElementsInterface, ActionIdInterface, Confir
         return $this;
     }
 
-    private function handleAccessibilityLabel(): self
-    {
-        if (!is_null($this->accessibilityLabel)) {
-            $this->block['accessibility_label'] = $this->accessibilityLabel;
-        }
-
-        return $this;
-    }
 
     public function toArray(): array
     {

@@ -9,6 +9,8 @@ use Arouze\SlackMessageBuilder\Objects\OptionGroupObject;
 use Arouze\SlackMessageBuilder\Objects\OptionObject;
 use Arouze\SlackMessageBuilder\Objects\SlackFileObject;
 use Arouze\SlackMessageBuilder\Objects\TextObject;
+use Arouze\SlackMessageBuilder\Objects\TriggerObject;
+use Arouze\SlackMessageBuilder\Objects\WorkflowObject;
 use Faker\Factory;
 
 trait ObjectBuilderTrait
@@ -89,5 +91,16 @@ trait ObjectBuilderTrait
         $optionGroupObject->addOption($optionObject);
 
         return $optionGroupObject;
+    }
+
+    protected function buildTriggerObject(string $url): TriggerObject
+    {
+        return (new TriggerObject())->setUrl($url);
+    }
+
+    protected function buildWorkflowObject(string $url): WorkflowObject
+    {
+        return (new WorkflowObject())
+            ->setTrigger(self::buildTriggerObject($url));
     }
 }

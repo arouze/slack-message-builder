@@ -7,8 +7,6 @@ use Arouze\SlackMessageBuilder\Blocks\InputBlock;
 use Arouze\SlackMessageBuilder\Blocks\SectionBlock;
 use Arouze\SlackMessageBuilder\Common\ActionIdInterface;
 use Arouze\SlackMessageBuilder\Common\ActionIdTrait;
-use Arouze\SlackMessageBuilder\Exceptions\TooMuchOptionsException;
-use Arouze\SlackMessageBuilder\Objects\OptionObject;
 
 class CheckBoxElement implements BlockElementsInterface, ActionIdInterface, ConfirmableElementInterface, FocusableInterface // phpcs:ignore
 {
