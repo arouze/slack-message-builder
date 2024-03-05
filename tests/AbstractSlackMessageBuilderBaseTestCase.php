@@ -23,7 +23,7 @@ abstract class AbstractSlackMessageBuilderBaseTestCase extends TestCase
     protected static function buildButtonElement(): ButtonElement
     {
         return (new ButtonElement())
-            ->setText(self::buildButtonTextObject());
+            ->setText(self::buildTextObject());
     }
 
     protected static function buildDateTimePickerElement(): DateTimePickerElement

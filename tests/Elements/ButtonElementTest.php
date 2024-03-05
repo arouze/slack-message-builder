@@ -13,7 +13,7 @@ class ButtonElementTest extends AbstractSlackMessageBuilderBaseTestCase
 {
     public function testButtonElement(): void
     {
-        $textObject = self::buildButtonTextObject();
+        $textObject = self::buildTextObject();
         self::assertEquals(
             [
                 'type' => 'button',
@@ -28,7 +28,7 @@ class ButtonElementTest extends AbstractSlackMessageBuilderBaseTestCase
     public function testButtonElementWithDefaultStyle(): void
     {
         $buttonElement = (new ButtonElement())
-            ->setText(self::buildButtonTextObject())
+            ->setText(self::buildTextObject())
             ->setStyle(ButtonElement::BUTTON_STYLE_DEFAULT)
             ->toArray();
 
@@ -38,7 +38,7 @@ class ButtonElementTest extends AbstractSlackMessageBuilderBaseTestCase
     public function testButtonElementWithPrimaryStyle(): void
     {
         $buttonElement = (new ButtonElement())
-            ->setText(self::buildButtonTextObject())
+            ->setText(self::buildTextObject())
             ->setStyle(ButtonElement::BUTTON_STYLE_PRIMARY)
             ->toArray();
 
@@ -48,7 +48,7 @@ class ButtonElementTest extends AbstractSlackMessageBuilderBaseTestCase
 
     public function testButtonElementWithConfirm(): void
     {
-        $textObject = self::buildButtonTextObject();
+        $textObject = self::buildTextObject();
         $confirmDialogObject = self::buildConfirmDialogObjectElement();
 
         self::assertEquals(
@@ -66,7 +66,7 @@ class ButtonElementTest extends AbstractSlackMessageBuilderBaseTestCase
 
     public function testButtonElementWithActionId(): void
     {
-        $textObject = self::buildButtonTextObject();
+        $textObject = self::buildTextObject();
         $actionId = $this->fakerGenerator->text();
         self::assertEquals(
             [
@@ -85,7 +85,7 @@ class ButtonElementTest extends AbstractSlackMessageBuilderBaseTestCase
     {
         self::expectException(TooLongTextException::class);
 
-        $text = self::buildButtonTextObject();
+        $text = self::buildTextObject();
         $text->setText($this->fakerGenerator->realTextBetween(76));
 
         (new ButtonElement())
@@ -97,7 +97,7 @@ class ButtonElementTest extends AbstractSlackMessageBuilderBaseTestCase
     {
         self::expectException(TooLongTextException::class);
 
-        $text = self::buildButtonTextObject();
+        $text = self::buildTextObject();
 
         (new ButtonElement())
             ->setText($text)
@@ -109,7 +109,7 @@ class ButtonElementTest extends AbstractSlackMessageBuilderBaseTestCase
     {
         self::expectException(TooLongTextException::class);
 
-        $text = self::buildButtonTextObject();
+        $text = self::buildTextObject();
 
         (new ButtonElement())
             ->setText($text)
