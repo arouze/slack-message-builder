@@ -86,7 +86,7 @@ This package will help you to build message easily and will warn you if you don'
 
 ### [Composition Objects](https://api.slack.com/reference/block-kit/composition-objects) 
 - [x] Confirmation dialog object
-- [ ] Conversation filter object
+- [x] Conversation filter object
 - [x] Dispatch action configuration object
 - [x] Option object
 - [x] Option group object
@@ -102,3 +102,7 @@ This package will help you to build message easily and will warn you if you don'
 - [x] Text
 - [x] User
 - [x] UserGroup
+
+## Want to help ? An issue ?
+
+- [You can open an issue](https://github.com/arouze/slack-message-builder/issues/new)
