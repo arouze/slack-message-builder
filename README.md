@@ -82,7 +82,7 @@ This package will help you to build message easily and will warn you if you don'
 - [x] RichTextSection
 - [x] RichTextList
 - [x] RichTextPreformatted
-- [ ] RichTextQuote
+- [x] RichTextQuote
 
 ### [Composition Objects](https://api.slack.com/reference/block-kit/composition-objects) 
 - [x] Confirmation dialog object

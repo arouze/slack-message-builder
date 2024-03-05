@@ -4,15 +4,15 @@ namespace Arouze\SlackMessageBuilder\Elements\RichText;
 
 use Arouze\SlackMessageBuilder\Objects\RichText\RichTextObjectTypeInterface;
 
-class RichTextPreformattedElement implements RichTextElementInterface
+class RichTextQuoteElement implements RichTextElementInterface
 {
     use RichTestBorderTrait;
 
-    // @doc : https://api.slack.com/reference/block-kit/blocks#rich_text_preformatted
-    private const RICH_TEXT_PREFORMATTED_ELEMENT_TYPE = 'rich_text_preformatted';
+    // @doc : https://api.slack.com/reference/block-kit/blocks#rich_text_quote
+    private const RICH_TEXT_QUOTE_ELEMENT_TYPE = 'rich_text_quote';
 
     private array $block = [
-        'type' => self::RICH_TEXT_PREFORMATTED_ELEMENT_TYPE
+        'type' => self::RICH_TEXT_QUOTE_ELEMENT_TYPE
     ];
 
     private array $elements = [];
@@ -37,8 +37,8 @@ class RichTextPreformattedElement implements RichTextElementInterface
     public function toArray(): array
     {
         $this
-        ->handleElements()
-        ->handleBorder();
+            ->handleElements()
+            ->handleBorder();
 
         return $this->block;
     }
