@@ -7,7 +7,7 @@ use Arouze\SlackMessageBuilder\Blocks\SectionBlock;
 use Arouze\SlackMessageBuilder\Common\ActionIdInterface;
 use Arouze\SlackMessageBuilder\Common\ActionIdTrait;
 use Arouze\SlackMessageBuilder\Exceptions\TooLongTextException;
-use Arouze\SlackMessageBuilder\Objects\ButtonTextObject;
+use Arouze\SlackMessageBuilder\Objects\TextObject;
 
 class ButtonElement implements BlockElementsInterface, ActionIdInterface, ConfirmableElementInterface
 {
@@ -32,27 +32,27 @@ class ButtonElement implements BlockElementsInterface, ActionIdInterface, Confir
         'type' => self::BUTTON_ELEMENT_TYPE
     ];
 
-    private ButtonTextObject $text;
+    private TextObject $text;
 
     private ?string $url = null;
 
     private ?string $value = null;
 
-    public function setText(ButtonTextObject $text): ButtonElement
+    public function setText(TextObject $text): self
     {
         $this->text = $text;
 
         return $this;
     }
 
-    public function setUrl(?string $url): ButtonElement
+    public function setUrl(?string $url): self
     {
         $this->url = $url;
 
         return $this;
     }
 
-    public function setValue(?string $value): ButtonElement
+    public function setValue(?string $value): self
     {
         $this->value = $value;
 

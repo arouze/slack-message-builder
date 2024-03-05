@@ -3,7 +3,6 @@
 namespace Arouze\Tests;
 
 use Arouze\SlackMessageBuilder\Elements\ImageElement;
-use Arouze\SlackMessageBuilder\Objects\ButtonTextObject;
 use Arouze\SlackMessageBuilder\Objects\ConfirmationDialogObject;
 use Arouze\SlackMessageBuilder\Objects\OptionGroupObject;
 use Arouze\SlackMessageBuilder\Objects\OptionObject;
@@ -11,7 +10,6 @@ use Arouze\SlackMessageBuilder\Objects\SlackFileObject;
 use Arouze\SlackMessageBuilder\Objects\TextObject;
 use Arouze\SlackMessageBuilder\Objects\TriggerObject;
 use Arouze\SlackMessageBuilder\Objects\WorkflowObject;
-use Faker\Factory;
 
 trait ObjectBuilderTrait
 {
@@ -43,12 +41,6 @@ trait ObjectBuilderTrait
         return (new SlackFileObject())
             ->setUrl($url)
             ->setId($id);
-    }
-
-    protected static function buildButtonTextObject(): ButtonTextObject
-    {
-        return (new ButtonTextObject())
-            ->setText('Simple button text.');
     }
 
     protected static function buildConfirmDialogObjectElement(): ConfirmationDialogObject
