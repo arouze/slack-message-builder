@@ -2,12 +2,16 @@
 
 namespace Arouze\SlackMessageBuilder\Objects\RichText;
 
-class ChannelType implements RichTextObjectTypeInterface
+class UserType implements RichTextObjectTypeInterface
 {
     use RichTextStyleTrait;
 
     // @doc : https://api.slack.com/reference/block-kit/blocks#element-types
-    private const CHANNEL_TYPE = 'channel';
+    private const USER_TYPE = 'user';
+
+    private array $block = [
+        'type' => self::USER_TYPE
+    ];
 
     private const AVAILABLE_STYLES = [
         self::STYLE_BOLD,
@@ -15,25 +19,21 @@ class ChannelType implements RichTextObjectTypeInterface
         self::STYLE_STRIKE,
         self::STYLE_HIGHLIGHT,
         self::STYLE_CLIENT_HIGHLIGHT,
-        self::STYLE_UNLINK
+        self::STYLE_UNLINK,
     ];
 
-    private array $block = [
-        'type' => self::CHANNEL_TYPE
-    ];
+    private string $userId;
 
-    private string $channelId;
-
-    public function setChannelId(string $channelId): self
+    public function setUserId(string $userId): self
     {
-        $this->channelId = $channelId;
+        $this->userId = $userId;
 
         return $this;
     }
 
     public function toArray(): array
     {
-        $this->block['channel_id'] = $this->channelId;
+        $this->block['user_id'] = $this->userId;
 
         return $this->block;
     }

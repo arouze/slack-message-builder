@@ -76,7 +76,7 @@ This package will help you to build message easily and will warn you if you don'
 - [x] Select menus
 - [x] Time pickers
 - [x] URL input
-- [ ] Workflow button
+- [x] Workflow button
 
 #### [Rich Text Elements](https://api.slack.com/reference/block-kit/blocks#rich_text)
 - [x] RichTextSection
@@ -97,8 +97,8 @@ This package will help you to build message easily and will warn you if you don'
 
 #### [Rich Text Object Type](https://api.slack.com/reference/block-kit/blocks#channel-element-type)
 - [x] Channel
-- [ ] Emoji
-- [ ] Link
-- [ ] Text
-- [ ] User
-- [ ] UserGroup
+- [x] Emoji
+- [x] Link
+- [x] Text
+- [x] User
+- [x] UserGroup
