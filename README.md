@@ -80,8 +80,8 @@ This package will help you to build message easily and will warn you if you don'
 
 #### [Rich Text Elements](https://api.slack.com/reference/block-kit/blocks#rich_text)
 - [x] RichTextSection
-- [ ] RichTextList
-- [ ] RichTextPreformatted
+- [x] RichTextList
+- [x] RichTextPreformatted
 - [ ] RichTextQuote
 
 ### [Composition Objects](https://api.slack.com/reference/block-kit/composition-objects) 
